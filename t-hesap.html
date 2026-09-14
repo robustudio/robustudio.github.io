@@ -146,7 +146,8 @@
   .shot img{ width:100%; display:block; transition:transform .3s ease; }
   .shot:hover img{ transform:scale(1.04); }
   .shot figcaption{ padding:12px 14px 16px; font-size:13.5px; color:var(--ink-soft); margin:0; }
-  .hero-visual{ border-radius:24px; overflow:hidden; border:1px solid var(--hair); margin-bottom:8px; box-shadow:0 30px 60px -30px rgba(20,10,10,.3); }
+  .hero-visual{ width:340px; max-width:60%; border-radius:24px; overflow:hidden; border:1px solid var(--hair); margin-bottom:8px; box-shadow:0 30px 60px -30px rgba(20,10,10,.3); }
+  @media (max-width:640px){ .hero-visual{ width:260px; max-width:72%; } }
   .feat-section{ padding:8px 0 64px; }
   .feat-list{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px 32px; list-style:none; margin:0; padding:0; }
   @media (max-width:640px){ .feat-list{ grid-template-columns:1fr; } }
