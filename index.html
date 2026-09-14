@@ -41,33 +41,43 @@
   .eyebrow{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:12px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); }
   .disp{ font-family:'Bricolage Grotesque','Arial Black',sans-serif; font-weight:800; }
 
-  header{ padding:28px 0; }
-  .hdr-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  header{ padding:22px 20px 0; position:sticky; top:0; z-index:40; }
+  .navbar{
+    max-width:1080px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    background:color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--hair); border-radius:999px; padding:10px 10px 10px 22px;
+    box-shadow:0 16px 40px -24px rgba(20,10,10,.28);
+  }
+  @media (prefers-color-scheme:dark){ .navbar{ box-shadow:0 16px 40px -24px rgba(0,0,0,.6); } }
+  @media (max-width:620px){ .navbar{ border-radius:24px; padding:14px 16px; } }
   .brand{ display:flex; align-items:baseline; gap:8px; text-decoration:none; }
-  .brand .robu{ font-family:'Noot','Arial Black',sans-serif; font-weight:400; font-size:30px; letter-spacing:.5px; color:var(--robu); }
-  .brand .studio{ font-size:14px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
-  .hdr-right{ display:flex; align-items:center; gap:14px; }
-  .dots{ display:flex; gap:7px; }
-  .dot{ width:9px; height:9px; border-radius:50%; }
-  .ig-link{ display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; text-decoration:none; border:1.5px solid var(--hair); border-radius:999px; padding:8px 16px; white-space:nowrap; }
-  .ig-link:hover{ border-color:var(--robu); }
+  .brand .robu{ font-family:'Noot','Arial Black',sans-serif; font-weight:400; font-size:26px; letter-spacing:.5px; color:var(--robu); }
+  .brand .studio{ font-size:12.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+  .hdr-right{ display:flex; align-items:center; gap:10px; }
+  .dots{ display:none; }
+  .ig-link{
+    display:inline-flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600; text-decoration:none;
+    background:var(--ink); color:var(--ground); border-radius:999px; padding:10px 18px; white-space:nowrap;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .ig-link:hover{ transform:translateY(-1px); opacity:.9; }
   .back-link{ display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; text-decoration:none; color:var(--ink-soft); }
   .back-link:hover{ color:var(--ink); }
 
-  .lang-switch{ display:flex; align-items:center; gap:2px; border:1.5px solid var(--hair); border-radius:999px; padding:3px; }
+  .lang-switch{ display:flex; align-items:center; gap:2px; background:var(--ground); border-radius:999px; padding:3px; }
   .lang-switch button{
-    font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:.04em;
-    background:none; border:0; border-radius:999px; padding:6px 11px; cursor:pointer; color:var(--ink-soft);
+    font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:10.5px; font-weight:600; letter-spacing:.04em;
+    background:none; border:0; border-radius:999px; padding:6px 10px; cursor:pointer; color:var(--ink-soft);
   }
-  .lang-switch button[aria-current="true"]{ background:var(--ink); color:var(--ground); }
+  .lang-switch button[aria-current="true"]{ background:var(--surface); color:var(--ink); box-shadow:0 1px 4px rgba(0,0,0,.12); }
 
-  .btn{ display:inline-flex; align-items:center; gap:10px; font-size:15px; font-weight:600; padding:13px 26px; border-radius:999px; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease, opacity .15s ease; }
-  .btn-primary{ background:var(--robu); color:#fff; box-shadow:0 10px 24px -10px rgba(196,42,42,.55); }
-  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -10px rgba(196,42,42,.6); }
-  .btn-ghost{ color:var(--ink); border:1.5px solid var(--hair); background:var(--surface); }
+  .btn{ display:inline-flex; align-items:center; gap:10px; font-size:15px; font-weight:600; padding:14px 28px; border-radius:999px; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease, opacity .15s ease; }
+  .btn-primary{ background:var(--ink); color:var(--ground); }
+  .btn-primary:hover{ transform:translateY(-2px); opacity:.9; }
+  .btn-ghost{ color:var(--ink); border:1.5px solid var(--hair); background:transparent; }
   .btn-ghost:hover{ border-color:var(--ink); transform:translateY(-2px); }
 
-  footer{ padding:40px 0 56px; }
+  footer{ padding:56px 0 64px; }
   .ftr-row{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding-top:28px; border-top:1px solid var(--hair); }
   .ftr-left{ font-size:13.5px; color:var(--ink-soft); }
   .ftr-right{ display:flex; align-items:center; gap:16px; font-size:13.5px; }
@@ -75,52 +85,51 @@
   .ftr-right a:hover{ text-decoration:underline; }
 
   
-  /* hub */
-  .hero{ position:relative; padding:64px 0 84px; overflow:hidden; }
-  .hero-tiles{ position:absolute; top:-60px; right:-40px; width:420px; height:320px; z-index:0; pointer-events:none; }
-  .hero-tiles i{ position:absolute; border-radius:16px; opacity:.85; }
-  @media (max-width:900px){ .hero-tiles{ display:none; } }
-  .hero .wrap-inner{ position:relative; z-index:1; }
-  .hero h1{ margin:18px 0 20px; font-size:clamp(2.4rem,6vw,4.1rem); line-height:1.04; letter-spacing:-.02em; }
-  .hero .sub{ max-width:600px; font-size:19px; line-height:1.6; color:var(--ink-soft); margin:0 0 32px; }
-  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
-  .apps{ padding:8px 0 64px; }
-  .apps h2{ font-size:28px; letter-spacing:-.01em; margin:0 0 28px; }
-  .grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-  @media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
-  .card{
-    position:relative; background:var(--surface); border:1px solid var(--hair); border-radius:18px;
-    padding:26px 26px 22px; border-left:4px solid var(--rail); display:flex; flex-direction:column; text-decoration:none;
-    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  /* hub — centered editorial hero */
+  .hero{ position:relative; overflow:hidden; padding:96px 0 80px; text-align:center; }
+  .hero::before{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(560px 340px at 50% -12%, rgba(196,42,42,.12), transparent 70%);
   }
-  .card:hover{ transform:translateY(-4px); box-shadow:0 20px 36px -18px rgba(20,15,15,.22); border-color:var(--rail); }
-  @media (prefers-color-scheme:dark){ .card:hover{ box-shadow:0 20px 36px -18px rgba(0,0,0,.55); } }
-  .card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
-  .card h3{ font-size:22px; margin:0; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; color:var(--ink); }
-  .badge{ flex:none; font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:10.5px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; padding:4px 10px; border-radius:999px; white-space:nowrap; }
-  .badge-outline{ border:1px solid; background:transparent; }
-  .card-tag{ margin:14px 0 18px; font-size:15px; line-height:1.55; color:var(--ink-soft); min-height:48px; }
-  .card-cta{ margin-top:auto; font-size:13.5px; font-weight:700; color:var(--rail); display:inline-flex; align-items:center; gap:6px; }
-  .card-cta .arrow{ display:inline-block; transition:transform .18s ease; }
-  .card:hover .card-cta .arrow{ transform:translateX(4px); }
-  .principles-wrap{ padding:8px 24px 64px; max-width:1080px; margin:0 auto; }
-  .principles{
-    background:var(--dark); color:var(--dark-ink); padding:64px 48px; border-radius:32px;
-    box-shadow:0 30px 60px -30px rgba(20,10,10,.35); position:relative; overflow:hidden;
+  @media (prefers-color-scheme:dark){ .hero::before{ background:radial-gradient(560px 340px at 50% -12%, rgba(240,100,99,.14), transparent 70%); } }
+  .hero .wrap-inner{ position:relative; z-index:1; max-width:660px; margin:0 auto; }
+  .hero h1{ margin:16px 0 20px; font-size:clamp(2.6rem,6.4vw,4.4rem); line-height:1.03; letter-spacing:-.02em; }
+  .hero .sub{ max-width:500px; margin:0 auto 34px; font-size:18.5px; line-height:1.6; color:var(--ink-soft); }
+  .cta-row{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+
+  /* hub — dark full-bleed showcase */
+  .showcase{ background:#100E17; color:#F4F2F1; padding:80px 0 68px; }
+  .showcase h2{ text-align:center; font-size:clamp(1.7rem,3.8vw,2.3rem); letter-spacing:-.01em; margin:0 0 30px; color:#fff; }
+  .filters{ display:flex; justify-content:center; gap:7px; margin-bottom:52px; flex-wrap:wrap; }
+  .filters button{
+    font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+    background:rgba(244,242,241,.06); border:1px solid rgba(244,242,241,.13); color:rgba(244,242,241,.6);
+    padding:9px 16px; border-radius:999px; cursor:pointer; transition:background .15s ease, color .15s ease;
   }
-  @media (max-width:640px){ .principles{ padding:48px 26px; border-radius:24px; } }
-  .principles::before{
-    content:""; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(420px 260px at 96% 8%, rgba(229,72,61,.16), transparent 65%);
-  }
-  .principles .in{ position:relative; z-index:1; display:flex; flex-direction:column; gap:40px; }
-  .principles h2{ margin:0; font-size:clamp(2rem,4.6vw,2.8rem); line-height:1.05; letter-spacing:-.02em; }
-  .principles h2 .dot-red{ color:#E5484D; }
+  .filters button[aria-current="true"]{ background:#F4F2F1; color:#100E17; border-color:#F4F2F1; }
+
+  .plist{ max-width:740px; margin:0 auto; border-top:1px solid rgba(244,242,241,.1); }
+  .prow{ display:flex; align-items:center; gap:16px; padding:20px 2px; border-bottom:1px solid rgba(244,242,241,.1); }
+  .prow.hide{ display:none; }
+  .prow-link{ display:flex; align-items:center; gap:18px; flex:1; min-width:0; text-decoration:none; color:inherit; }
+  .prow-swatch{ flex:none; width:44px; height:44px; border-radius:12px; }
+  .prow-name{ font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; color:#fff; }
+  .prow-status{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; margin-top:3px; }
+  .prow-arrow{ flex:none; opacity:.3; transition:transform .18s ease, opacity .18s ease; }
+  .prow-link:hover .prow-arrow{ opacity:.9; transform:translateX(3px); }
+  .prow-links{ flex:none; display:flex; gap:8px; }
+  .prow-links a{ display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(244,242,241,.06); border:1px solid rgba(244,242,241,.13); color:rgba(244,242,241,.75); transition:background .15s ease; }
+  .prow-links a:hover{ background:rgba(244,242,241,.15); }
+  @media (max-width:560px){ .prow-links{ display:none; } }
+
+  .principles{ max-width:740px; margin:68px auto 0; padding-top:52px; border-top:1px solid rgba(244,242,241,.1); }
+  .principles h3{ text-align:center; font-size:clamp(1.6rem,3.6vw,2.1rem); margin:0 0 40px; letter-spacing:-.01em; color:#fff; }
+  .principles h3 .dot-red{ color:#E5484D; }
   .rules{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
-  @media (max-width:760px){ .rules{ grid-template-columns:1fr; } }
-  .rule{ display:flex; gap:18px; }
-  .rule .n{ font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:34px; color:#E5484D; flex:none; }
-  .rule p{ margin:6px 0 0; font-size:15.5px; line-height:1.55; color:rgba(244,242,241,.82); }
+  @media (max-width:700px){ .rules{ grid-template-columns:1fr; } }
+  .rule{ display:flex; gap:16px; }
+  .rule .n{ font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:30px; color:#E5484D; flex:none; }
+  .rule p{ margin:5px 0 0; font-size:15px; line-height:1.55; color:rgba(244,242,241,.72); }
 
   /* app detail pages — dark, centered showcase hero */
   .app-hero{
@@ -178,15 +187,9 @@
 </style>
 </head>
 <body>
-<header><div class="wrap hdr-row">
+<header><nav class="navbar">
   <a class="brand" href="./"><span class="robu">ROBU</span><span data-i18n="nav.studio">STUDIO</span></a>
   <div class="hdr-right">
-    <div class="dots">
-      <span class="dot" style="background:#B57A00"></span>
-      <span class="dot" style="background:#1FA98F"></span>
-      <span class="dot" style="background:#0C8F82"></span>
-      <span class="dot" style="background:#4C6EA8"></span>
-    </div>
     <div class="lang-switch">
       <button type="button" data-lang-btn="en" aria-current="true">EN</button>
       <button type="button" data-lang-btn="es" aria-current="false">ES</button>
@@ -194,17 +197,10 @@
     </div>
     <a class="ig-link" href="https://www.instagram.com/studio.robu/" target="_blank" rel="noopener">@studio.robu</a>
   </div>
-</div></header>
+</nav></header>
 
 
-<section class="hero">
-    <div class="hero-tiles">
-      <i style="left:170px; top:20px; width:118px; height:172px; background:#B57A00; transform:rotate(6deg);"></i>
-      <i style="left:250px; top:-30px; width:118px; height:172px; background:#1FA98F;"></i>
-      <i style="left:60px; top:70px; width:118px; height:172px; background:#4C6EA8; transform:rotate(-6deg);"></i>
-      <i style="left:150px; top:150px; width:118px; height:172px; background:#0C8F82; transform:rotate(4deg);"></i>
-      <i style="left:300px; top:120px; width:118px; height:172px; background:#C42A2A; transform:rotate(-4deg);"></i>
-    </div><div class="wrap wrap-inner">
+<section class="hero"><div class="wrap wrap-inner">
   <p class="eyebrow" data-i18n="hub.eyebrow">An independent app studio</p>
   <h1 class="disp" data-i18n="hub.h1">Small apps,<br>built to actually help.</h1>
   <p class="sub" data-i18n="hub.sub">Focused tools for taxi drivers, readers, watchers, and people who still write real letters. No bloat, no dark patterns &mdash; just the thing you needed.</p>
@@ -214,56 +210,88 @@
   </div>
 </div></section>
 
-<section class="apps" id="apps"><div class="wrap">
+<section class="showcase" id="apps"><div class="wrap">
   <h2 class="disp" data-i18n="hub.appsHeading">What we&rsquo;re building</h2>
-  <div class="grid">
+  <div class="filters">
+    <button type="button" data-filter-btn="all" aria-current="true" data-i18n="hub.filterAll">All</button>
+    <button type="button" data-filter-btn="live" aria-current="false" data-i18n="badge.live">LIVE</button>
+    <button type="button" data-filter-btn="soon" aria-current="false" data-i18n="badge.comingSoon">COMING SOON</button>
+    <button type="button" data-filter-btn="dev" aria-current="false" data-i18n="badge.inDev">IN DEVELOPMENT</button>
+  </div>
+  <div class="plist">
     
-      <a class="card" style="--rail:#B57A00" href="t-hesap.html">
-        <div class="card-top">
-          <h3>T-Hesap</h3>
-          <span class="badge " style="background:#B57A00;color:#fff" data-i18n="badge.live">LIVE</span>
-        </div>
-        <p class="card-tag" data-i18n="card.thesap.tagline">Trip, fuel, and daily-report bookkeeping &mdash; built for taxi drivers.</p>
-        <span class="card-cta" data-i18n="hub.cardCta">See the app <span class="arrow">&rarr;</span></span>
-      </a>
+      <div class="prow" data-status="live">
+        <a class="prow-link" href="t-hesap.html">
+          <span class="prow-swatch" style="background:#B57A00"></span>
+          <span style="flex:1; min-width:0;">
+            <span class="prow-name">T-Hesap</span>
+            <span class="prow-status" style="color:#B57A00" data-i18n="badge.live">LIVE</span>
+          </span>
+          <span class="prow-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h10M9.5 4.5 14 9l-4.5 4.5"/></svg></span>
+        </a>
+        <span class="prow-links"><a href="https://play.google.com/store/apps/dev?id=5026637330264370709" target="_blank" rel="noopener"><svg width="16" height="18" viewBox="0 0 16 18" fill="currentColor"><path d="M1 1.4v15.2c0 .4.4.6.7.4l12.6-7.6c.3-.2.3-.7 0-.9L1.7 1c-.3-.2-.7 0-.7.4z"/></svg></a><a href="https://www.instagram.com/taksiihesap/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="16" height="16" rx="4.5"/><circle cx="9" cy="9" r="4"/><circle cx="13.3" cy="4.7" r="0.9" fill="currentColor" stroke="none"/></svg></a></span>
+      </div>
     
-      <a class="card" style="--rail:#1FA98F" href="tv-list.html">
-        <div class="card-top">
-          <h3>TV-List</h3>
-          <span class="badge badge-outline" style="color:#1FA98F;border-color:#1FA98F" data-i18n="badge.comingSoon">COMING SOON</span>
-        </div>
-        <p class="card-tag" data-i18n="card.tvlist.tagline">Every show and film you watch, in one list. Track episodes, discover what&rsquo;s next.</p>
-        <span class="card-cta" data-i18n="hub.cardCta">See the app <span class="arrow">&rarr;</span></span>
-      </a>
+      <div class="prow" data-status="soon">
+        <a class="prow-link" href="tv-list.html">
+          <span class="prow-swatch" style="background:#1FA98F"></span>
+          <span style="flex:1; min-width:0;">
+            <span class="prow-name">TV-List</span>
+            <span class="prow-status" style="color:#1FA98F" data-i18n="badge.comingSoon">COMING SOON</span>
+          </span>
+          <span class="prow-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h10M9.5 4.5 14 9l-4.5 4.5"/></svg></span>
+        </a>
+        <span class="prow-links"><a href="https://www.instagram.com/tvlist.robu/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="16" height="16" rx="4.5"/><circle cx="9" cy="9" r="4"/><circle cx="13.3" cy="4.7" r="0.9" fill="currentColor" stroke="none"/></svg></a></span>
+      </div>
     
-      <a class="card" style="--rail:#0C8F82" href="pagely.html">
-        <div class="card-top">
-          <h3>Pagely</h3>
-          <span class="badge badge-outline" style="color:#0C8F82;border-color:#0C8F82" data-i18n="badge.inDev">IN DEVELOPMENT</span>
-        </div>
-        <p class="card-tag" data-i18n="card.pagely.tagline">A calmer place to track what you read &mdash; shelves, progress, and reviews.</p>
-        <span class="card-cta" data-i18n="hub.cardCta">See the app <span class="arrow">&rarr;</span></span>
-      </a>
+      <div class="prow" data-status="dev">
+        <a class="prow-link" href="pagely.html">
+          <span class="prow-swatch" style="background:#0C8F82"></span>
+          <span style="flex:1; min-width:0;">
+            <span class="prow-name">Pagely</span>
+            <span class="prow-status" style="color:#0C8F82" data-i18n="badge.inDev">IN DEVELOPMENT</span>
+          </span>
+          <span class="prow-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h10M9.5 4.5 14 9l-4.5 4.5"/></svg></span>
+        </a>
+        <span class="prow-links"><a href="https://www.instagram.com/studio.robu/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="16" height="16" rx="4.5"/><circle cx="9" cy="9" r="4"/><circle cx="13.3" cy="4.7" r="0.9" fill="currentColor" stroke="none"/></svg></a></span>
+      </div>
     
-      <a class="card" style="--rail:#4C6EA8" href="pigeon.html">
-        <div class="card-top">
-          <h3>Pigeon</h3>
-          <span class="badge badge-outline" style="color:#4C6EA8;border-color:#4C6EA8" data-i18n="badge.inDev">IN DEVELOPMENT</span>
-        </div>
-        <p class="card-tag" data-i18n="card.pigeon.tagline">Slow letters, real connections &mdash; a pen-pal app for people who miss real mail.</p>
-        <span class="card-cta" data-i18n="hub.cardCta">See the app <span class="arrow">&rarr;</span></span>
-      </a>
+      <div class="prow" data-status="dev">
+        <a class="prow-link" href="pigeon.html">
+          <span class="prow-swatch" style="background:#4C6EA8"></span>
+          <span style="flex:1; min-width:0;">
+            <span class="prow-name">Pigeon</span>
+            <span class="prow-status" style="color:#4C6EA8" data-i18n="badge.inDev">IN DEVELOPMENT</span>
+          </span>
+          <span class="prow-arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h10M9.5 4.5 14 9l-4.5 4.5"/></svg></span>
+        </a>
+        <span class="prow-links"><a href="https://www.instagram.com/studio.robu/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="16" height="16" rx="4.5"/><circle cx="9" cy="9" r="4"/><circle cx="13.3" cy="4.7" r="0.9" fill="currentColor" stroke="none"/></svg></a></span>
+      </div>
+  </div>
+
+  <div class="principles">
+    <h3 class="disp" data-i18n="principles.heading">We keep it simple<span class="dot-red">.</span></h3>
+    <div class="rules">
+      <div class="rule"><span class="n">1</span><p data-i18n="principles.rule1">Stay simple &mdash; one app, one job, done well.</p></div>
+      <div class="rule"><span class="n">2</span><p data-i18n="principles.rule2">Stay fast &mdash; no waiting on launch.</p></div>
+      <div class="rule"><span class="n">3</span><p data-i18n="principles.rule3">No ads, no data selling &mdash; the app works for you.</p></div>
+    </div>
   </div>
 </div></section>
 
-<div class="principles-wrap"><section class="principles"><div class="in">
-  <h2 class="disp" data-i18n="principles.heading">We keep it simple<span class="dot-red">.</span></h2>
-  <div class="rules">
-    <div class="rule"><span class="n">1</span><p data-i18n="principles.rule1">Stay simple &mdash; one app, one job, done well.</p></div>
-    <div class="rule"><span class="n">2</span><p data-i18n="principles.rule2">Stay fast &mdash; no waiting on launch.</p></div>
-    <div class="rule"><span class="n">3</span><p data-i18n="principles.rule3">No ads, no data selling &mdash; the app works for you.</p></div>
-  </div>
-</div></section></div>
+<script>
+(function(){
+  var buttons = document.querySelectorAll('[data-filter-btn]');
+  var rows = document.querySelectorAll('.prow');
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-filter-btn');
+      buttons.forEach(function(x){ x.setAttribute('aria-current', x === b ? 'true' : 'false'); });
+      rows.forEach(function(r){ r.classList.toggle('hide', f !== 'all' && r.getAttribute('data-status') !== f); });
+    });
+  });
+})();
+</script>
 
 <footer><div class="wrap">
   <div class="ftr-row">
@@ -274,7 +302,7 @@
 
 <script>
 (function(){
-  var L = {"nav.studio":{"en":"STUDIO","es":"ESTUDIO","tr":"STÜDYO"},"nav.backAllApps":{"en":"&larr; All apps","es":"&larr; Todas las apps","tr":"&larr; Tüm uygulamalar"},"footer.copyright":{"en":"&copy; Robu Studio &mdash; an independent app studio.","es":"&copy; Robu Studio &mdash; un estudio de apps independiente.","tr":"&copy; Robu Studio &mdash; bağımsız bir uygulama stüdyosu."},"footer.dm":{"en":"DM us &mdash; we read everything","es":"Escr&iacute;benos &mdash; lo leemos todo","tr":"DM at &mdash; hepsini okuyoruz"},"hub.eyebrow":{"en":"An independent app studio","es":"Un estudio de apps independiente","tr":"Bağımsız bir uygulama stüdyosu"},"hub.h1":{"en":"Small apps,<br>built to actually help.","es":"Apps peque&ntilde;as,<br>hechas para ayudar de verdad.","tr":"Küçük uygulamalar,<br>gerçekten işe yarasın diye yapıldı."},"hub.sub":{"en":"Focused tools for taxi drivers, readers, watchers, and people who still write real letters. No bloat, no dark patterns &mdash; just the thing you needed.","es":"Herramientas simples para taxistas, lectores, espectadores y gente que todav&iacute;a escribe cartas de verdad. Sin relleno, sin trucos oscuros &mdash; solo lo que necesitabas.","tr":"Taksi şoförleri, okurlar, izleyiciler ve hâlâ gerçek mektup yazan insanlar için odaklı araçlar. Gereksiz şişkinlik yok, karanlık desenler yok — sadece ihtiyacın olan şey."},"hub.ctaFollow":{"en":"Follow @studio.robu","es":"Seguir @studio.robu","tr":"@studio.robu&rsquo;yu takip et"},"hub.ctaSeeApps":{"en":"See our apps","es":"Ver nuestras apps","tr":"Uygulamalarımıza bak"},"hub.appsHeading":{"en":"What we&rsquo;re building","es":"Lo que estamos construyendo","tr":"Neler yapıyoruz"},"hub.cardCta":{"en":"See the app &rarr;","es":"Ver la app &rarr;","tr":"Uygulamaya git &rarr;"},"badge.live":{"en":"LIVE","es":"EN VIVO","tr":"YAYINDA"},"badge.comingSoon":{"en":"COMING SOON","es":"PR&Oacute;XIMAMENTE","tr":"YAKINDA"},"badge.inDev":{"en":"IN DEVELOPMENT","es":"EN DESARROLLO","tr":"GELİŞTİRİLİYOR"},"card.thesap.tagline":{"en":"Trip, fuel, and daily-report bookkeeping &mdash; built for taxi drivers.","es":"Registro de viajes, combustible y reportes diarios &mdash; hecho para taxistas.","tr":"Sefer, yakıt ve günlük rapor takibi — taksi şoförleri için."},"card.tvlist.tagline":{"en":"Every show and film you watch, in one list. Track episodes, discover what&rsquo;s next.","es":"Cada serie y pel&iacute;cula que ves, en una sola lista. Sigue los episodios, descubre qu&eacute; ver despu&eacute;s.","tr":"İzlediğin her dizi ve film, tek bir listede. Bölümleri takip et, sırada ne var keşfet."},"card.pagely.tagline":{"en":"A calmer place to track what you read &mdash; shelves, progress, and reviews.","es":"Un lugar m&aacute;s tranquilo para llevar el control de lo que lees &mdash; estanter&iacute;as, progreso y rese&ntilde;as.","tr":"Okuduklarını takip etmek için daha sakin bir yer — raflar, ilerleme ve yorumlar."},"card.pigeon.tagline":{"en":"Slow letters, real connections &mdash; a pen-pal app for people who miss real mail.","es":"Cartas lentas, conexiones reales &mdash; una app de amigos por correspondencia para quienes extra&ntilde;an el correo de verdad.","tr":"Yavaş mektuplar, gerçek bağlantılar — gerçek postayı özleyenler için bir mektup arkadaşı uygulaması."},"principles.heading":{"en":"We keep it simple<span class=\"dot-red\">.</span>","es":"Lo mantenemos simple<span class=\"dot-red\">.</span>","tr":"Basit tutuyoruz<span class=\"dot-red\">.</span>"},"principles.rule1":{"en":"Stay simple &mdash; one app, one job, done well.","es":"Simple siempre &mdash; una app, una tarea, bien hecha.","tr":"Basit kal — tek uygulama, tek iş, düzgün yapılmış."},"principles.rule2":{"en":"Stay fast &mdash; no waiting on launch.","es":"R&aacute;pido siempre &mdash; sin esperas al abrir.","tr":"Hızlı kal — açılışta beklemek yok."},"principles.rule3":{"en":"No ads, no data selling &mdash; the app works for you.","es":"Sin anuncios, sin venta de datos &mdash; la app trabaja para ti.","tr":"Reklam yok, veri satışı yok — uygulama senin için çalışır."},"app.ctaFollowUpdates":{"en":"Follow @studio.robu for updates","es":"Segu&iacute;nos en @studio.robu para novedades","tr":"Güncellemeler için @studio.robu&rsquo;yu takip et"},"app.thesap.tagline":{"en":"Trip, fuel, and daily-report bookkeeping for taxi drivers &mdash; every shift, tracked in one screen.","es":"Registro de viajes, combustible y reportes diarios para taxistas &mdash; cada turno, controlado en una sola pantalla.","tr":"Taksi şoförleri için sefer, yakıt ve günlük rapor takibi — her vardiya, tek ekranda."},"app.thesap.gallery.1":{"en":"Trip tracking &mdash; km, expenses and fares in one screen","es":"Seguimiento de viajes &mdash; km, gastos y tarifas en una pantalla","tr":"Sefer takibi — km, giderler ve ücretler tek ekranda"},"app.thesap.gallery.2":{"en":"Archive &mdash; every day, logged and easy to find","es":"Archivo &mdash; cada d&iacute;a, registrado y f&aacute;cil de encontrar","tr":"Arşiv — her gün kaydedilir, bulması kolay"},"app.thesap.gallery.3":{"en":"Analysis &mdash; see where the money goes","es":"An&aacute;lisis &mdash; mira a d&oacute;nde va el dinero","tr":"Analiz — paranın nereye gittiğini gör"},"app.thesap.gallery.4":{"en":"Settings &mdash; set your own rates and shares","es":"Ajustes &mdash; define tus propias tarifas y repartos","tr":"Ayarlar — kendi oranlarını ve paylarını belirle"},"app.thesap.gallery.5":{"en":"Send your daily report to the taxi owner &mdash; one tap, over WhatsApp","es":"Env&iacute;a tu reporte diario al due&ntilde;o del taxi &mdash; con un toque, por WhatsApp","tr":"Günlük raporunu taksi sahibine gönder — tek dokunuşla, WhatsApp üzerinden"},"app.thesap.gallery.6":{"en":"Share a trip log &mdash; over WhatsApp","es":"Comparte un registro de viaje &mdash; por WhatsApp","tr":"Sefer kaydını paylaş — WhatsApp üzerinden"},"app.thesap.gallery.7":{"en":"Share an analysis summary &mdash; over WhatsApp","es":"Comparte un resumen de an&aacute;lisis &mdash; por WhatsApp","tr":"Analiz özetini paylaş — WhatsApp üzerinden"},"app.thesap.feat.1.h":{"en":"One screen per shift.","es":"Una pantalla por turno.","tr":"Vardiya başına tek ekran."},"app.thesap.feat.1.p":{"en":" Start and end kilometres, fuel and other expenses, and every trip &mdash; logged as you go.","es":" Kil&oacute;metros de inicio y fin, combustible y otros gastos, y cada viaje &mdash; registrado sobre la marcha.","tr":" Başlangıç ve bitiş kilometresi, yakıt ve diğer giderler, her sefer — anında kaydedilir."},"app.thesap.feat.2.h":{"en":"Reports that write themselves.","es":"Reportes que se escriben solos.","tr":"Kendini yazan raporlar."},"app.thesap.feat.2.p":{"en":" Daily, weekly and monthly summaries, ready to send.","es":" Res&uacute;menes diarios, semanales y mensuales, listos para enviar.","tr":" Günlük, haftalık ve aylık özetler, göndermeye hazır."},"app.thesap.feat.3.h":{"en":"Share in one tap.","es":"Comparte con un toque.","tr":"Tek dokunuşla paylaş."},"app.thesap.feat.3.p":{"en":" Send a report straight to the taxi owner over WhatsApp &mdash; no typing it out by hand.","es":" Env&iacute;a un reporte directo al due&ntilde;o del taxi por WhatsApp &mdash; sin escribirlo a mano.","tr":" Raporu doğrudan taksi sahibine WhatsApp&rsquo;tan gönder — elle yazmaya gerek yok."},"app.thesap.feat.4.h":{"en":"Built for the driver's seat.","es":"Hecho para el asiento del conductor.","tr":"Şoför koltuğu için tasarlandı."},"app.thesap.feat.4.p":{"en":" Big touch targets, simple screens, works the way a shift actually moves.","es":" Botones grandes, pantallas simples, funciona como realmente avanza un turno.","tr":" Büyük dokunma alanları, sade ekranlar, bir vardiyanın gerçek akışına uygun."},"app.tvlist.tagline":{"en":"Every show and film you watch, in one list. Track episodes, discover what&rsquo;s next, and see where it&rsquo;s streaming.","es":"Cada serie y pel&iacute;cula que ves, en una sola lista. Sigue los episodios, descubre qu&eacute; ver despu&eacute;s y en qu&eacute; plataforma est&aacute;.","tr":"İzlediğin her dizi ve film, tek bir listede. Bölümleri takip et, sırada ne olduğunu keşfet, nerede yayınlandığını gör."},"app.tvlist.gallery.1":{"en":"Mark every episode &mdash; &ldquo;Watch next&rdquo; always knows where you stopped","es":"Marca cada episodio &mdash; &ldquo;Ver siguiente&rdquo; siempre sabe d&oacute;nde te quedaste","tr":"Her bölümü işaretle — “Sıradaki” nerede kaldığını her zaman bilir"},"app.tvlist.gallery.2":{"en":"Trending now, and what's rated highest on TV-List","es":"Lo m&aacute;s popular ahora, y lo mejor valorado en TV-List","tr":"Şu an trend olanlar ve TV-List'te en yüksek puanlılar"},"app.tvlist.gallery.3":{"en":"Trailers, one per swipe","es":"Trailers, uno por deslizamiento","tr":"Fragmanlar, her kaydırmada bir tane"},"app.tvlist.gallery.4":{"en":"Go deep on any cast &amp; crew","es":"Explora a fondo cualquier reparto y equipo","tr":"Herhangi bir oyuncu ya da ekip hakkında derinlemesine bilgi al"},"app.tvlist.gallery.5":{"en":"Watch your year add up","es":"Mira c&oacute;mo se suma tu a&ntilde;o","tr":"Yılının nasıl toplandığını izle"},"app.tvlist.gallery.6":{"en":"The people you watch with","es":"La gente con la que ves contenido","tr":"Birlikte izlediğin insanlar"},"app.tvlist.feat.1.h":{"en":"Track.","es":"Seguimiento.","tr":"Takip."},"app.tvlist.feat.1.p":{"en":" Tick each episode as you watch. &ldquo;Watch next&rdquo; always knows where you stopped.","es":" Marca cada episodio mientras lo ves. &ldquo;Ver siguiente&rdquo; siempre sabe d&oacute;nde te quedaste.","tr":" İzledikçe her bölümü işaretle. “Sıradaki” nerede kaldığını her zaman bilir."},"app.tvlist.feat.2.h":{"en":"Discover.","es":"Descubre.","tr":"Keşfet."},"app.tvlist.feat.2.p":{"en":" Trending shows, top-rated on TV-List, and filters for platform, country and genre.","es":" Series populares, mejor valoradas en TV-List, y filtros por plataforma, pa&iacute;s y g&eacute;nero.","tr":" Trend diziler, TV-List'te en yüksek puanlılar ve platform, ülke, tür filtreleri."},"app.tvlist.feat.3.h":{"en":"Stats.","es":"Estad&iacute;sticas.","tr":"İstatistikler."},"app.tvlist.feat.3.p":{"en":" Total watch time, top genres, finished vs in progress, and a year in review.","es":" Tiempo total visto, g&eacute;neros favoritos, terminadas vs en progreso, y un resumen del a&ntilde;o.","tr":" Toplam izleme süresi, en çok izlenen türler, biten/devam eden oranı ve yıl özeti."},"app.tvlist.feat.4.h":{"en":"Friends.","es":"Amigos.","tr":"Arkadaşlar."},"app.tvlist.feat.4.p":{"en":" Follow people, see what they're watching, and swap takes on the shows you both love.","es":" Sigue a otras personas, mira qu&eacute; est&aacute;n viendo, y comenten juntos las series que ambos aman.","tr":" İnsanları takip et, ne izlediklerini gör, ikinizin de sevdiği dizileri konuş."},"app.pagely.tagline":{"en":"A calmer place to track what you read &mdash; shelves, progress, and reviews, without the noise.","es":"Un lugar m&aacute;s tranquilo para llevar el control de lo que lees &mdash; estanter&iacute;as, progreso y rese&ntilde;as, sin ruido.","tr":"Okuduklarını takip etmek için daha sakin bir yer — raflar, ilerleme ve yorumlar, gürültüsüz."},"app.pagely.feat.1.h":{"en":"Shelves.","es":"Estanter&iacute;as.","tr":"Raflar."},"app.pagely.feat.1.p":{"en":" Reading, want to read, finished &mdash; organise your library the way you actually think about it.","es":" Leyendo, quiero leer, terminados &mdash; organiza tu biblioteca como realmente la piensas.","tr":" Okunuyor, okumak istiyorum, bitti — kütüphaneni gerçekten düşündüğün gibi düzenle."},"app.pagely.feat.2.h":{"en":"Progress.","es":"Progreso.","tr":"İlerleme."},"app.pagely.feat.2.p":{"en":" Log pages as you go and watch a book move toward done.","es":" Registra p&aacute;ginas a medida que avanzas y mira c&oacute;mo un libro se acerca al final.","tr":" Okudukça sayfaları kaydet, bir kitabın bitmeye doğru ilerlediğini izle."},"app.pagely.feat.3.h":{"en":"Reviews.","es":"Rese&ntilde;as.","tr":"Yorumlar."},"app.pagely.feat.3.p":{"en":" Write what you thought, rate it, keep it for yourself or share it.","es":" Escribe lo que pensaste, calif&iacute;calo, gu&aacute;rdalo para ti o comp&aacute;rtelo.","tr":" Ne düşündüğünü yaz, puanla, kendine sakla ya da paylaş."},"app.pigeon.tagline":{"en":"Slow letters, real connections &mdash; a pen-pal app for people who miss real mail.","es":"Cartas lentas, conexiones reales &mdash; una app de amigos por correspondencia para quienes extra&ntilde;an el correo de verdad.","tr":"Yavaş mektuplar, gerçek bağlantılar — gerçek postayı özleyenler için bir mektup arkadaşı uygulaması."},"app.pigeon.feat.1.h":{"en":"Slow by design.","es":"Lenta a prop&oacute;sito.","tr":"Bilerek yavaş."},"app.pigeon.feat.1.p":{"en":" Letters take time to arrive, on purpose &mdash; no instant replies, no pressure.","es":" Las cartas tardan en llegar, a prop&oacute;sito &mdash; sin respuestas instant&aacute;neas, sin presi&oacute;n.","tr":" Mektuplar ulaşmak için zaman alır, bilerek — anında yanıt yok, baskı yok."},"app.pigeon.feat.2.h":{"en":"Real pen pals.","es":"Amigos por correspondencia de verdad.","tr":"Gerçek mektup arkadaşları."},"app.pigeon.feat.2.p":{"en":" Get matched with someone new, or keep writing to the ones you've found.","es":" Con&eacute;ctate con alguien nuevo, o sigue escribi&eacute;ndole a quienes ya encontraste.","tr":" Yeni biriyle eşleş, ya da bulduğun kişilerle yazışmaya devam et."},"app.pigeon.feat.3.h":{"en":"Made to be kept.","es":"Hecha para guardarse.","tr":"Saklamak için yapıldı."},"app.pigeon.feat.3.p":{"en":" An inbox that feels like a shoebox of letters, not a chat log.","es":" Una bandeja de entrada que se siente como una caja de zapatos llena de cartas, no como un chat.","tr":" Bir sohbet kaydı değil, mektup dolu bir ayakkabı kutusu gibi hissettiren bir gelen kutusu."}};
+  var L = {"nav.studio":{"en":"STUDIO","es":"ESTUDIO","tr":"STÜDYO"},"nav.backAllApps":{"en":"&larr; All apps","es":"&larr; Todas las apps","tr":"&larr; Tüm uygulamalar"},"footer.copyright":{"en":"&copy; Robu Studio &mdash; an independent app studio.","es":"&copy; Robu Studio &mdash; un estudio de apps independiente.","tr":"&copy; Robu Studio &mdash; bağımsız bir uygulama stüdyosu."},"footer.dm":{"en":"DM us &mdash; we read everything","es":"Escr&iacute;benos &mdash; lo leemos todo","tr":"DM at &mdash; hepsini okuyoruz"},"hub.eyebrow":{"en":"An independent app studio","es":"Un estudio de apps independiente","tr":"Bağımsız bir uygulama stüdyosu"},"hub.h1":{"en":"Small apps,<br>built to actually help.","es":"Apps peque&ntilde;as,<br>hechas para ayudar de verdad.","tr":"Küçük uygulamalar,<br>gerçekten işe yarasın diye yapıldı."},"hub.sub":{"en":"Focused tools for taxi drivers, readers, watchers, and people who still write real letters. No bloat, no dark patterns &mdash; just the thing you needed.","es":"Herramientas simples para taxistas, lectores, espectadores y gente que todav&iacute;a escribe cartas de verdad. Sin relleno, sin trucos oscuros &mdash; solo lo que necesitabas.","tr":"Taksi şoförleri, okurlar, izleyiciler ve hâlâ gerçek mektup yazan insanlar için odaklı araçlar. Gereksiz şişkinlik yok, karanlık desenler yok — sadece ihtiyacın olan şey."},"hub.ctaFollow":{"en":"Follow @studio.robu","es":"Seguir @studio.robu","tr":"@studio.robu&rsquo;yu takip et"},"hub.ctaSeeApps":{"en":"See our apps","es":"Ver nuestras apps","tr":"Uygulamalarımıza bak"},"hub.appsHeading":{"en":"What we&rsquo;re building","es":"Lo que estamos construyendo","tr":"Neler yapıyoruz"},"hub.cardCta":{"en":"See the app &rarr;","es":"Ver la app &rarr;","tr":"Uygulamaya git &rarr;"},"hub.filterAll":{"en":"All","es":"Todo","tr":"Tümü"},"badge.live":{"en":"LIVE","es":"EN VIVO","tr":"YAYINDA"},"badge.comingSoon":{"en":"COMING SOON","es":"PR&Oacute;XIMAMENTE","tr":"YAKINDA"},"badge.inDev":{"en":"IN DEVELOPMENT","es":"EN DESARROLLO","tr":"GELİŞTİRİLİYOR"},"card.thesap.tagline":{"en":"Trip, fuel, and daily-report bookkeeping &mdash; built for taxi drivers.","es":"Registro de viajes, combustible y reportes diarios &mdash; hecho para taxistas.","tr":"Sefer, yakıt ve günlük rapor takibi — taksi şoförleri için."},"card.tvlist.tagline":{"en":"Every show and film you watch, in one list. Track episodes, discover what&rsquo;s next.","es":"Cada serie y pel&iacute;cula que ves, en una sola lista. Sigue los episodios, descubre qu&eacute; ver despu&eacute;s.","tr":"İzlediğin her dizi ve film, tek bir listede. Bölümleri takip et, sırada ne var keşfet."},"card.pagely.tagline":{"en":"A calmer place to track what you read &mdash; shelves, progress, and reviews.","es":"Un lugar m&aacute;s tranquilo para llevar el control de lo que lees &mdash; estanter&iacute;as, progreso y rese&ntilde;as.","tr":"Okuduklarını takip etmek için daha sakin bir yer — raflar, ilerleme ve yorumlar."},"card.pigeon.tagline":{"en":"Slow letters, real connections &mdash; a pen-pal app for people who miss real mail.","es":"Cartas lentas, conexiones reales &mdash; una app de amigos por correspondencia para quienes extra&ntilde;an el correo de verdad.","tr":"Yavaş mektuplar, gerçek bağlantılar — gerçek postayı özleyenler için bir mektup arkadaşı uygulaması."},"principles.heading":{"en":"We keep it simple<span class=\"dot-red\">.</span>","es":"Lo mantenemos simple<span class=\"dot-red\">.</span>","tr":"Basit tutuyoruz<span class=\"dot-red\">.</span>"},"principles.rule1":{"en":"Stay simple &mdash; one app, one job, done well.","es":"Simple siempre &mdash; una app, una tarea, bien hecha.","tr":"Basit kal — tek uygulama, tek iş, düzgün yapılmış."},"principles.rule2":{"en":"Stay fast &mdash; no waiting on launch.","es":"R&aacute;pido siempre &mdash; sin esperas al abrir.","tr":"Hızlı kal — açılışta beklemek yok."},"principles.rule3":{"en":"No ads, no data selling &mdash; the app works for you.","es":"Sin anuncios, sin venta de datos &mdash; la app trabaja para ti.","tr":"Reklam yok, veri satışı yok — uygulama senin için çalışır."},"app.ctaFollowUpdates":{"en":"Follow @studio.robu for updates","es":"Segu&iacute;nos en @studio.robu para novedades","tr":"Güncellemeler için @studio.robu&rsquo;yu takip et"},"app.thesap.tagline":{"en":"Trip, fuel, and daily-report bookkeeping for taxi drivers &mdash; every shift, tracked in one screen.","es":"Registro de viajes, combustible y reportes diarios para taxistas &mdash; cada turno, controlado en una sola pantalla.","tr":"Taksi şoförleri için sefer, yakıt ve günlük rapor takibi — her vardiya, tek ekranda."},"app.thesap.gallery.1":{"en":"Trip tracking &mdash; km, expenses and fares in one screen","es":"Seguimiento de viajes &mdash; km, gastos y tarifas en una pantalla","tr":"Sefer takibi — km, giderler ve ücretler tek ekranda"},"app.thesap.gallery.2":{"en":"Archive &mdash; every day, logged and easy to find","es":"Archivo &mdash; cada d&iacute;a, registrado y f&aacute;cil de encontrar","tr":"Arşiv — her gün kaydedilir, bulması kolay"},"app.thesap.gallery.3":{"en":"Analysis &mdash; see where the money goes","es":"An&aacute;lisis &mdash; mira a d&oacute;nde va el dinero","tr":"Analiz — paranın nereye gittiğini gör"},"app.thesap.gallery.4":{"en":"Settings &mdash; set your own rates and shares","es":"Ajustes &mdash; define tus propias tarifas y repartos","tr":"Ayarlar — kendi oranlarını ve paylarını belirle"},"app.thesap.gallery.5":{"en":"Send your daily report to the taxi owner &mdash; one tap, over WhatsApp","es":"Env&iacute;a tu reporte diario al due&ntilde;o del taxi &mdash; con un toque, por WhatsApp","tr":"Günlük raporunu taksi sahibine gönder — tek dokunuşla, WhatsApp üzerinden"},"app.thesap.gallery.6":{"en":"Share a trip log &mdash; over WhatsApp","es":"Comparte un registro de viaje &mdash; por WhatsApp","tr":"Sefer kaydını paylaş — WhatsApp üzerinden"},"app.thesap.gallery.7":{"en":"Share an analysis summary &mdash; over WhatsApp","es":"Comparte un resumen de an&aacute;lisis &mdash; por WhatsApp","tr":"Analiz özetini paylaş — WhatsApp üzerinden"},"app.thesap.feat.1.h":{"en":"One screen per shift.","es":"Una pantalla por turno.","tr":"Vardiya başına tek ekran."},"app.thesap.feat.1.p":{"en":" Start and end kilometres, fuel and other expenses, and every trip &mdash; logged as you go.","es":" Kil&oacute;metros de inicio y fin, combustible y otros gastos, y cada viaje &mdash; registrado sobre la marcha.","tr":" Başlangıç ve bitiş kilometresi, yakıt ve diğer giderler, her sefer — anında kaydedilir."},"app.thesap.feat.2.h":{"en":"Reports that write themselves.","es":"Reportes que se escriben solos.","tr":"Kendini yazan raporlar."},"app.thesap.feat.2.p":{"en":" Daily, weekly and monthly summaries, ready to send.","es":" Res&uacute;menes diarios, semanales y mensuales, listos para enviar.","tr":" Günlük, haftalık ve aylık özetler, göndermeye hazır."},"app.thesap.feat.3.h":{"en":"Share in one tap.","es":"Comparte con un toque.","tr":"Tek dokunuşla paylaş."},"app.thesap.feat.3.p":{"en":" Send a report straight to the taxi owner over WhatsApp &mdash; no typing it out by hand.","es":" Env&iacute;a un reporte directo al due&ntilde;o del taxi por WhatsApp &mdash; sin escribirlo a mano.","tr":" Raporu doğrudan taksi sahibine WhatsApp&rsquo;tan gönder — elle yazmaya gerek yok."},"app.thesap.feat.4.h":{"en":"Built for the driver's seat.","es":"Hecho para el asiento del conductor.","tr":"Şoför koltuğu için tasarlandı."},"app.thesap.feat.4.p":{"en":" Big touch targets, simple screens, works the way a shift actually moves.","es":" Botones grandes, pantallas simples, funciona como realmente avanza un turno.","tr":" Büyük dokunma alanları, sade ekranlar, bir vardiyanın gerçek akışına uygun."},"app.tvlist.tagline":{"en":"Every show and film you watch, in one list. Track episodes, discover what&rsquo;s next, and see where it&rsquo;s streaming.","es":"Cada serie y pel&iacute;cula que ves, en una sola lista. Sigue los episodios, descubre qu&eacute; ver despu&eacute;s y en qu&eacute; plataforma est&aacute;.","tr":"İzlediğin her dizi ve film, tek bir listede. Bölümleri takip et, sırada ne olduğunu keşfet, nerede yayınlandığını gör."},"app.tvlist.gallery.1":{"en":"Mark every episode &mdash; &ldquo;Watch next&rdquo; always knows where you stopped","es":"Marca cada episodio &mdash; &ldquo;Ver siguiente&rdquo; siempre sabe d&oacute;nde te quedaste","tr":"Her bölümü işaretle — “Sıradaki” nerede kaldığını her zaman bilir"},"app.tvlist.gallery.2":{"en":"Trending now, and what's rated highest on TV-List","es":"Lo m&aacute;s popular ahora, y lo mejor valorado en TV-List","tr":"Şu an trend olanlar ve TV-List'te en yüksek puanlılar"},"app.tvlist.gallery.3":{"en":"Trailers, one per swipe","es":"Trailers, uno por deslizamiento","tr":"Fragmanlar, her kaydırmada bir tane"},"app.tvlist.gallery.4":{"en":"Go deep on any cast &amp; crew","es":"Explora a fondo cualquier reparto y equipo","tr":"Herhangi bir oyuncu ya da ekip hakkında derinlemesine bilgi al"},"app.tvlist.gallery.5":{"en":"Watch your year add up","es":"Mira c&oacute;mo se suma tu a&ntilde;o","tr":"Yılının nasıl toplandığını izle"},"app.tvlist.gallery.6":{"en":"The people you watch with","es":"La gente con la que ves contenido","tr":"Birlikte izlediğin insanlar"},"app.tvlist.feat.1.h":{"en":"Track.","es":"Seguimiento.","tr":"Takip."},"app.tvlist.feat.1.p":{"en":" Tick each episode as you watch. &ldquo;Watch next&rdquo; always knows where you stopped.","es":" Marca cada episodio mientras lo ves. &ldquo;Ver siguiente&rdquo; siempre sabe d&oacute;nde te quedaste.","tr":" İzledikçe her bölümü işaretle. “Sıradaki” nerede kaldığını her zaman bilir."},"app.tvlist.feat.2.h":{"en":"Discover.","es":"Descubre.","tr":"Keşfet."},"app.tvlist.feat.2.p":{"en":" Trending shows, top-rated on TV-List, and filters for platform, country and genre.","es":" Series populares, mejor valoradas en TV-List, y filtros por plataforma, pa&iacute;s y g&eacute;nero.","tr":" Trend diziler, TV-List'te en yüksek puanlılar ve platform, ülke, tür filtreleri."},"app.tvlist.feat.3.h":{"en":"Stats.","es":"Estad&iacute;sticas.","tr":"İstatistikler."},"app.tvlist.feat.3.p":{"en":" Total watch time, top genres, finished vs in progress, and a year in review.","es":" Tiempo total visto, g&eacute;neros favoritos, terminadas vs en progreso, y un resumen del a&ntilde;o.","tr":" Toplam izleme süresi, en çok izlenen türler, biten/devam eden oranı ve yıl özeti."},"app.tvlist.feat.4.h":{"en":"Friends.","es":"Amigos.","tr":"Arkadaşlar."},"app.tvlist.feat.4.p":{"en":" Follow people, see what they're watching, and swap takes on the shows you both love.","es":" Sigue a otras personas, mira qu&eacute; est&aacute;n viendo, y comenten juntos las series que ambos aman.","tr":" İnsanları takip et, ne izlediklerini gör, ikinizin de sevdiği dizileri konuş."},"app.pagely.tagline":{"en":"A calmer place to track what you read &mdash; shelves, progress, and reviews, without the noise.","es":"Un lugar m&aacute;s tranquilo para llevar el control de lo que lees &mdash; estanter&iacute;as, progreso y rese&ntilde;as, sin ruido.","tr":"Okuduklarını takip etmek için daha sakin bir yer — raflar, ilerleme ve yorumlar, gürültüsüz."},"app.pagely.feat.1.h":{"en":"Shelves.","es":"Estanter&iacute;as.","tr":"Raflar."},"app.pagely.feat.1.p":{"en":" Reading, want to read, finished &mdash; organise your library the way you actually think about it.","es":" Leyendo, quiero leer, terminados &mdash; organiza tu biblioteca como realmente la piensas.","tr":" Okunuyor, okumak istiyorum, bitti — kütüphaneni gerçekten düşündüğün gibi düzenle."},"app.pagely.feat.2.h":{"en":"Progress.","es":"Progreso.","tr":"İlerleme."},"app.pagely.feat.2.p":{"en":" Log pages as you go and watch a book move toward done.","es":" Registra p&aacute;ginas a medida que avanzas y mira c&oacute;mo un libro se acerca al final.","tr":" Okudukça sayfaları kaydet, bir kitabın bitmeye doğru ilerlediğini izle."},"app.pagely.feat.3.h":{"en":"Reviews.","es":"Rese&ntilde;as.","tr":"Yorumlar."},"app.pagely.feat.3.p":{"en":" Write what you thought, rate it, keep it for yourself or share it.","es":" Escribe lo que pensaste, calif&iacute;calo, gu&aacute;rdalo para ti o comp&aacute;rtelo.","tr":" Ne düşündüğünü yaz, puanla, kendine sakla ya da paylaş."},"app.pigeon.tagline":{"en":"Slow letters, real connections &mdash; a pen-pal app for people who miss real mail.","es":"Cartas lentas, conexiones reales &mdash; una app de amigos por correspondencia para quienes extra&ntilde;an el correo de verdad.","tr":"Yavaş mektuplar, gerçek bağlantılar — gerçek postayı özleyenler için bir mektup arkadaşı uygulaması."},"app.pigeon.feat.1.h":{"en":"Slow by design.","es":"Lenta a prop&oacute;sito.","tr":"Bilerek yavaş."},"app.pigeon.feat.1.p":{"en":" Letters take time to arrive, on purpose &mdash; no instant replies, no pressure.","es":" Las cartas tardan en llegar, a prop&oacute;sito &mdash; sin respuestas instant&aacute;neas, sin presi&oacute;n.","tr":" Mektuplar ulaşmak için zaman alır, bilerek — anında yanıt yok, baskı yok."},"app.pigeon.feat.2.h":{"en":"Real pen pals.","es":"Amigos por correspondencia de verdad.","tr":"Gerçek mektup arkadaşları."},"app.pigeon.feat.2.p":{"en":" Get matched with someone new, or keep writing to the ones you've found.","es":" Con&eacute;ctate con alguien nuevo, o sigue escribi&eacute;ndole a quienes ya encontraste.","tr":" Yeni biriyle eşleş, ya da bulduğun kişilerle yazışmaya devam et."},"app.pigeon.feat.3.h":{"en":"Made to be kept.","es":"Hecha para guardarse.","tr":"Saklamak için yapıldı."},"app.pigeon.feat.3.p":{"en":" An inbox that feels like a shoebox of letters, not a chat log.","es":" Una bandeja de entrada que se siente como una caja de zapatos llena de cartas, no como un chat.","tr":" Bir sohbet kaydı değil, mektup dolu bir ayakkabı kutusu gibi hissettiren bir gelen kutusu."}};
   function apply(lang){
     document.documentElement.setAttribute('lang', lang);
     document.querySelectorAll('[data-i18n]').forEach(function(el){
